@@ -30,3 +30,7 @@ def test_func(optional_arguments:str) -> set:
     return optional_value
 ```
 
+- To test functions and modules if they conform to PEP-8 standards, use the following,
+    - Install Pytest | `python3 -m pin install pytest`
+    - Install PEP-8 | `python3 -m pin install pytest-pep8`
+    - Execute Test | `py.test --pep8 module_name.py`
