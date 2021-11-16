@@ -10,3 +10,5 @@
 - To build a working server-side web app, we need web-app framework.
 - Let's install Flask.
     - `sudo python3 -m pip install flask`
+- Function Decorators are indicated by `@` -> e.g. `@app.route(/my_page)`
+- Decorator functions can support support mutiple methods -> `@app.route('/my_page', methods=['POST'])`
