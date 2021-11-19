@@ -13,4 +13,5 @@
         variable = open(filename)
         for lines in variable:
             print(lines)
-        variable.close()```
+        variable.close()
+        ```
