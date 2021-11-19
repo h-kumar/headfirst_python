@@ -1,7 +1,13 @@
+
 def write_to_file():
     f = open('./todos.txt', 'a')
-    writein = input('Would you like to add a line?: ')
-
+    while True:
+        writein = input('Would you like to add a line?: (Y or N) ')
+        if writein not in ['Y', 'N']:
+            print('Try again')
+            continue
+        else:
+            break
     if writein == 'Y':
         user_line = input('Ok what\'s the line?: ')
         print(user_line, file=f)
@@ -13,8 +19,6 @@ def write_to_file():
     else:
         print('Ok, Bye!')
 
-    
-
 
 def read_from_file():
     f = open('./todos.txt')
@@ -22,13 +26,10 @@ def read_from_file():
 
     if view_line == 'Y':
         for lines in f:
-            print(lines,end='')
+            print(lines, end='')
     else:
         print('Ok, Bye!')
     f.close()
-
-    # else:
-    #     print('Ok Bye Bye!')
 
 
 write_to_file()
