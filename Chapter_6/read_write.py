@@ -1,35 +1,44 @@
-
 def write_to_file():
-    f = open('./todos.txt', 'a')
+    """Append User input based on User's confirmation."""
     while True:
         writein = input('Would you like to add a line?: (Y or N) ')
-        if writein not in ['Y', 'N']:
-            print('Try again')
-            continue
-        else:
+
+        if writein == 'Y':
+            f = open('./todos.txt', 'a')
+            user_line = input('Ok what\'s the line?: ')
+            print(user_line, file=f)
+            print('Your line is recorded. Thank you.')
+            f.close()
+            read_from_file()
             break
-    if writein == 'Y':
-        user_line = input('Ok what\'s the line?: ')
-        print(user_line, file=f)
-        print('Your line is recorded. Thank you.')
-        f.close()
-        read_from_file()
-    elif writein == 'N':
-        read_from_file()
-    else:
-        print('Ok, Bye!')
+        elif writein == 'N':
+            read_from_file()
+            break
+        else:
+            validate_input(writein)
 
 
 def read_from_file():
-    f = open('./todos.txt')
-    view_line = input('Would you like to view the file contents?: ')
+    """Display file contents based on User confirmation."""
+    while True:
+        view_line = input('Would you like to view the file contents?: ')
+        if view_line == 'Y':
+            f = open('./todos.txt')
+            for lines in f:
+                print(lines)
+            f.close()
+            break
+        elif view_line == 'N':
+            print('Ok, Bye!')
+            break
+        else:
+            validate_input(view_line)
 
-    if view_line == 'Y':
-        for lines in f:
-            print(lines, end='')
-    else:
-        print('Ok, Bye!')
-    f.close()
+
+def validate_input(user_input):
+    """Validate User's input against acceptable Input values."""
+    if user_input not in ['Y', 'N']:
+        print('Try again')
 
 
 write_to_file()
