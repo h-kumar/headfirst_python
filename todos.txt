@@ -7,3 +7,5 @@ This is a new line
 Another new line
 My line dammit
 Where is my line?
+Hello mein leibe freund
+Refactoring
