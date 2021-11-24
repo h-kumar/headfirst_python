@@ -4,13 +4,13 @@ def write_to_file():
         writein = input('Would you like to add a line?: (Y or N) ')
 
         if writein == 'Y':
-            f = open('./todos.txt', 'a')
-            user_line = input('Ok what\'s the line?: ')
-            print(user_line, file=f)
-            print('Your line is recorded. Thank you.')
-            f.close()
-            read_from_file()
-            break
+            with open('./todos.txt','a') as todos:
+                user_line = input('Ok what\'s the line?: ')
+                print(user_line, file=todos)
+                print('Your line is recorded. Thank you.')
+                todos.close()
+                read_from_file()
+                break
         elif writein == 'N':
             read_from_file()
             break
@@ -23,11 +23,10 @@ def read_from_file():
     while True:
         view_line = input('Would you like to view the file contents?: ')
         if view_line == 'Y':
-            f = open('./todos.txt')
-            for lines in f:
-                print(lines)
-            f.close()
-            break
+            with open('./todos.txt') as todos:
+                for lines in todos:
+                    print(lines)
+                break
         elif view_line == 'N':
             print('Ok, Bye!')
             break
