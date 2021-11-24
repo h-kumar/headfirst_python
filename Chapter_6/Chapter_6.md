@@ -15,3 +15,4 @@
             print(lines)
         variable.close()
         ```
+- Using the `WITH` command,file operations can be done to read and write data, without having to explicilty using a `close()` command.
