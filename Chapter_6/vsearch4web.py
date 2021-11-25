@@ -9,7 +9,11 @@ app = Flask(__name__)
 def log_request(req:'flask_request',res:str) -> None:
     """log th html requests and responses into a log file."""
     with open('vsearch.log','a') as log:
-        print(req,res,file=log)
+        # print(str(dir(req)),res,file=log)
+        print(req.form, file=log, end='|')
+        print(req.remote_addr, file=log, end='|')
+        print(req.user_agent, file=log, end='|')
+        print(res, file=log)
 
 
 """Use the @ before a function to identify it as a decorator. This lets you change the funtion's behavior
