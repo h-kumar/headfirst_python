@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/bin/python3",
+    "python.pythonPath": "/home/hkumar/.local/share/virtualenvs/Chapter_6-3ea5QEbp/bin/python",
     "python.testing.unittestArgs": [
         "-v",
         "-s",
