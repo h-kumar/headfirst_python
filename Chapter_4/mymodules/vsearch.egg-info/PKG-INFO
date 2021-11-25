@@ -1,7 +1,7 @@
 Metadata-Version: 1.0
 Name: vsearch
-Version: 1.0
-Summary: Vowel search in a phrase
+Version: 1.1
+Summary: Vowel search in a phrase, case insensitive
 Home-page: UNKNOWN
 Author: hkumar
 Author-email: UNKNOWN
