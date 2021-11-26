@@ -51,7 +51,9 @@ def view_the_log() -> 'html':
                 contents[-1].append(escape(item))
     titles = ('Form Data', 'Remote_addr', 'User_agent', 'Results')
     return render_template('viewlog.html',
-                           the_title='View Log',the_row_titles=titles,the_data=contents,)
+                           the_title='View Log',
+                           the_row_titles=titles,
+                           the_data=contents,)
 
 
 """When deploying to a server, wrap the app.run(debug=True) in a dunder name == dunder main if statement."""
