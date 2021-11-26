@@ -41,10 +41,18 @@ def entry_page() -> 'html':
                            the_title='Welcome to search4letters on the Web!')
 
 @app.route('/viewlog')
-def view_the_log() -> str:
+def view_the_log() -> 'html':
+    """Display the contents of the log file as a HTML table."""
+    contents = []
     with open('vsearch.log') as log:
-        contents = log.read()
-        return escape(contents)
+        for line in log:
+            contents.append([])
+            for item in line.split('|'):
+                contents[-1].append(escape(item))
+    titles = ('Form Data', 'Remote_addr', 'User_agent', 'Results')
+    return render_template('viewlog.html',
+                           the_title='View Log',the_row_titles=titles,the_data=contents,)
+
 
 """When deploying to a server, wrap the app.run(debug=True) in a dunder name == dunder main if statement."""
 if __name__ == '__main__':
