@@ -1,5 +1,4 @@
 from DBcm import UseDatabase
-from sqlite3.dbapi2 import Cursor
 from flask import Flask, render_template, request, escape
 from werkzeug.utils import HTMLBuilder
 from vsearch import search_for_letters
@@ -8,14 +7,11 @@ from vsearch import search_for_letters
 """Identify the currently active namespace using __name__"""
 app = Flask(__name__)
 
-# BASE_DIR = os.path.dirname('/home/hkumar/Code/DB/')
-# DB_PATH = os.path.join(BASE_DIR,"vsearchlogdb.db")
 
 app.config['dbconfig'] = {}
 
 def log_request(req: 'flask_request', res: str) -> None:
     """log th html requests and responses into a log file."""
-    # conn = sqlite3.connect(DB_PATH)
     with UseDatabase(app.config['dbconfig']) as cursor:
         _SQL = """insert into log(phrase, letters, ip, browser_string, results)
         values(?,?,?,?,?)"""
@@ -68,19 +64,6 @@ def view_the_log() -> 'html':
                            the_row_titles=titles,
                            the_data=contents,)
     
-    # contents = []
-    # with open('vsearch.log') as log:
-    #     for line in log:
-    #         contents.append([])
-    #         for item in line.split('|'):
-    #             contents[-1].append(escape(item))
-    # titles = ('Form Data', 'Remote_addr', 'User_agent', 'Results')
-    # return render_template('viewlog.html',
-    #                        the_title='View Log',
-    #                        the_row_titles=titles,
-    #                        the_data=contents,)
 
-
-"""When deploying to a server, wrap the app.run(debug=True) in a dunder name == dunder main if statement."""
 if __name__ == '__main__':
     app.run(debug=True)
