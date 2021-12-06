@@ -10,17 +10,18 @@ app = Flask(__name__)
 
 app.config['dbconfig'] = {}
 
+
 def log_request(req: 'flask_request', res: str) -> None:
     """log th html requests and responses into a log file."""
     with UseDatabase(app.config['dbconfig']) as cursor:
         _SQL = """insert into log(phrase, letters, ip, browser_string, results)
         values(?,?,?,?,?)"""
 
-        cursor.execute(_SQL,(req.form['phrase'],
-                        req.form['letters'],
-                        req.remote_addr,
-                        req.user_agent.browser,
-                        res))
+        cursor.execute(_SQL, (req.form['phrase'],
+                              req.form['letters'],
+                              req.remote_addr,
+                              req.user_agent.browser,
+                              res))
 
 
 """Use the @ before a function to identify it as a decorator. This lets you change the funtion's behavior
@@ -63,7 +64,7 @@ def view_the_log() -> 'html':
                            the_title='View Log',
                            the_row_titles=titles,
                            the_data=contents,)
-    
+
 
 if __name__ == '__main__':
     app.run(debug=True)
